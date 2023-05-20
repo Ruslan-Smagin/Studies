@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+        const login = prompt("Please, enter Yore 'login'");
+        if (login === 'admin'){
+            const pasport = prompt("Please, enter Yore 'pasport'");
+            if (pasport === "blackOverlord") {
+                alert("Welcome"); 
+            }
+            else if (pasport === null) {
+                alert('Login Canceled');
+            }
+            else {
+                alert('Wrong pasport');
+            };
+        } else if (login === '' || login === null) {
+            alert("Login canceled");
+        } else if ( login !== 'andmin') {
+            alert('Uknown user');
+        }
+
+
+    </script>
+</body>
+</html>
