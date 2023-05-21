@@ -9,14 +9,18 @@
 <body>
     <script>
 
-      //  const simbol = prompt("Enter simbol");
-      let string = ""
-        do {
-            i += 1;
-            consol.log(string + i);
-        } while(i < 5);
+      const simbol = prompt("Enter simbol");
+      let string = "";
+      for (let i = 1; i <= 7; i++){
+        for (let j = 1; j <= 20; j++){
+          string += simbol + " ";
+        }
+        string += simbol + "\n";
+      }
+      
+      alert(string);
                 
-        
+
            // console.log(string);
         
         
