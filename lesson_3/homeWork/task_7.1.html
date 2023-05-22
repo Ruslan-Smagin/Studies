@@ -8,18 +8,19 @@
 </head>
 <body>
     <script>
-
-        do {const firstRandomNumb =  Math.floor(Math.random() * 9 + 1);
+        let answer;
+        do {
+            const firstRandomNumb =  Math.floor(Math.random() * 9 + 1);
             const secondRandomNumb = Math.floor(Math.random() * 9 + 1);
             let right = (firstRandomNumb * secondRandomNumb);
-            let answer = parseInt(prompt(`${firstRandomNumb} * ${secondRandomNumb} = ???  \n 
-        "Введите правильный ответ"`));
-        if (answer === right){
-            alert("Молодец")
-        }
-        else (
-            alert("You are wrong")
-            )
+            answer = prompt(`${firstRandomNumb} * ${secondRandomNumb} = ???\n"Введите правильный ответ"`);
+            let answerInt = parseInt(answer);
+
+            if (answerInt === right){
+                alert("Молодец")
+            } else {
+                alert("You are wrong")
+            }
         } while(answer !== null);
     </script>
 </body>
