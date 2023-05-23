@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let counter = 0;
+        let array = [[], [], [], [], [], [], [], [], [], []];
+
+        for(let i = 0; i < 1000000; i++) {
+             const randomNumbers = Math.floor(Math.random() * 100); // генереруем целое число от 0 до 99
+             const def = Math.floor(randomNumbers / 10); // создаем констану которая будет определять индекс внесения числа в массив.
+
+                if (def === 0) {
+                    array[0].push(randomNumbers);
+                }
+                if (def === 1) {
+                    array[1].push(randomNumbers);
+                }
+                if (def === 2) {
+                    array[2].push(randomNumbers);
+                }
+                if (def === 3) {
+                    array[3].push(randomNumbers);
+                }
+                if (def === 4) {
+                    array[4].push(randomNumbers);
+                }
+                if (def === 5) {
+                    array[5].push(randomNumbers);
+                }
+                if (def === 6) {
+                    array[6].push(randomNumbers);
+                }
+                if (def === 7) {
+                    array[7].push(randomNumbers);
+                }
+                if (def === 8) {
+                    array[8].push(randomNumbers);
+                }
+                if (def === 9) {
+                    array[9].push(randomNumbers);
+                }
+                counter++; //счетчик итераций
+       }
+        console.log(`Количество итераций: - ${counter}`);
+        console.log(`Группа от 1 до 9: - ${array[0].length}`);
+        console.log(`Группа от 10 до 19: - ${array[1].length}`);
+        console.log(`Группа от 20 до 29: - ${array[2].length}`);
+        console.log(`Группа от 30 до 39: - ${array[3].length}`);
+        console.log(`Группа от 40 до 49: - ${array[4].length}`);
+        console.log(`Группа от 50 до 59: - ${array[5].length}`);
+        console.log(`Группа от 60 до 69: - ${array[6].length}`);
+        console.log(`Группа от 70 до 79: - ${array[7].length}`);
+        console.log(`Группа от 80 до 89: - ${array[8].length}`);
+        console.log(`Группа от 90 до 99: - ${array[9].length}`);
+
+    </script>
+</body>
+</html>
