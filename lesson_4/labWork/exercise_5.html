@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let trueAnswer = [];
+        let foulsAnswer =[];
+        let answer;
+        while (true) {
+            const firstRandomNumb =  Math.floor(Math.random() * 9 + 1);
+            const secondRandomNumb = Math.floor(Math.random() * 9 + 1);
+            let right = firstRandomNumb * secondRandomNumb;
+
+            answer = prompt(`${firstRandomNumb} * ${secondRandomNumb} = ???\n"Введите правильный ответ"`);
+            let answerInt = parseInt(answer, 10);
+
+            if (answer === null){
+                alert("Good by!!!");
+                break;
+            } if (answerInt === right){
+                alert("Молодец");
+                trueAnswer.push(answerInt);
+            } if (answerInt !== right){
+                alert("Ты не прав попробуй снова!");
+                foulsAnswer.push(answerInt);
+            }
+         } 
+         const lenghtTrueAnswer = trueAnswer.length;
+         const lenghtFoulsAnswer = foulsAnswer.length;
+         const quantityRequest = lenghtTrueAnswer + lenghtFoulsAnswer;
+         
+         alert(`Your statistics:
+         Total request: = ${quantityRequest}
+         Correct answers = ${lenghtTrueAnswer}
+         Incorrect answers = ${lenghtFoulsAnswer}`);
+
+    </script>
+</body>
+</html>
