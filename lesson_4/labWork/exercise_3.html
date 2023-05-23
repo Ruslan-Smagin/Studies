@@ -8,15 +8,19 @@
 </head>
 <body>
     <script>
-        const age = parseInt(prompt("Enter your age"));
-        const mount = age * 12;
-        const days = mount * 30;
-        const minutes = mount * 43200;
+        const age = +prompt("Enter your age");
+        const mounts = Math.round(age * 12);
+        const leap = age / 4;
+        const isLeap = Math.round(leap);
+        const days = (isLeap * 366 + ((age - isLeap) * 365));
+        const minutes = days * 1440;
         const seconds = minutes * 60;
-        alert(`${mount} 
-            ${days} 
-            ${minutes}  
-            ${seconds}`);
+
+        alert(`Вы прожили: 
+             ${mounts} месяца
+             ${days} дней
+             ${minutes} минут
+             ${seconds} секунд`);
     </script>
 </body>
 </html>
