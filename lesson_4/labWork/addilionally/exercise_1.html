@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        stringNumbers("123456");  
+        stringNumbers("987612323234");
+        stringNumbers("1234556");
+        function stringNumbers(number) {
+  
+  if (number.length % 2 !== 0) {
+    console.log("В числе " + number + " количество цифр нечетное");
+    return;
+  }
+  
+  let firstHalf = number.slice(0, number.length / 2);
+  let secondHalf = number.slice(number.length / 2);
+  
+  let sumFirstHalf = 0;
+  let sumSecondHalf = 0;
+  
+  for (let i = 0; i < firstHalf.length; i++) {
+    sumFirstHalf += parseInt(firstHalf[i], 10);
+  }
+  
+  for (let j = 0; j < secondHalf.length; j++) {
+    sumSecondHalf += parseInt(secondHalf[j], 10);
+  }
+  
+  if (sumFirstHalf === sumSecondHalf) {
+    console.log("В числе " + number + " суммы первой и второй половины цифр равны");
+  } else {
+    console.log("В числе " + number + " суммы первой и второй половины цифр не равны");
+  }
+}
+    </script>
+</body>
+</html>
