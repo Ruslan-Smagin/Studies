@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let array1 = [];
+        function arrayGenerator(){
+            let array = [];
+            for (let i = 0; i < 13; i++){  
+                let rundomNumb = Math.floor(Math.random() * 13 + 13);
+                array.push(rundomNumb);
+            }
+            return array;
+        };
+        for (let i = 0; i < 4; i++){
+          array1.push(arrayGenerator());
+        }
+        /* программа сгенерировала 13 случайных чисел от 13 до 25 внесла их в массив,
+        далее этот массив добавили в другой массив 4 раза*/
+        
+        function calculateAverages(){
+            let averagesValues = [];
+            for (let i = 0; i < array1.length; i++){
+                const sum = array1[i].reduce((acc, curr) => acc + curr, 0);
+                const averageValue = (sum / array1[0].length).toFixed(2); // округлим до 100х
+                averagesValues.push(averageValue);
+            }
+            return averagesValues;
+        };
+        console.log(calculateAverages())
+    </script>
+</body>
+</html>
