@@ -9,21 +9,23 @@
 <body>
     <script> 
 
-        let enterCode = prompt("Enter something:");
+        
         function checkForNumber(){
+            const enterCode = prompt("Enter something:");
             if (!isNaN(enterCode) && enterCode !== null && enterCode !== "" && enterCode > 0){
-                alert("You entered positive a namber");
+                return ("You entered positive a namber");
             } else if (!isNaN(enterCode) && enterCode !== null && enterCode !== "" && enterCode < 0){
-                alert("You entered negative a namber");
+                return ("You entered negative a namber");
             } else if (isNaN(enterCode) && enterCode !== ""){
-                alert("You entered not a number");
+                return ("You entered not a number");
             } else if (enterCode === ""){
-                alert("You didn't enter anything");
+                return ("You didn't enter anything");
             } else if(enterCode === null){
-                alert("You pressed cansel");
-            } else (alert("You entered '0'"));
+                return ("You pressed cansel");
+            } else 
+                return ("You entered '0'");
         }
-        let result = checkForNumber();
+        alert(checkForNumber());
 
     </script>
 </body>

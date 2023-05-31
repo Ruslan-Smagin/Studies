@@ -10,10 +10,10 @@
     <script>
         const tempCels = prompt("Enter temperature in Celsius");
         function convertInCelsius() {
-             return parseInt((tempCels * 9 / 5) + 32);  
-        };
-        let fahrenheit = convertInCelsius();
-        alert("Temperature in Celsius - " + tempCels + " C" + '\n' +"Temperature in Fahrenheit - " + fahrenheit + " F");
+            const a = tempCels;
+             return parseInt((a * 9 / 5) + 32);  
+        }
+        alert("Temperature in Celsius - " + tempCels + " C" + '\n' +"Temperature in Fahrenheit - " + convertInCelsius(34) + " F");
     </script>
 </body>
 </html>

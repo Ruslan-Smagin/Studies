@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function getRandomInt(min, max) {
+            return Math.floor( Math.random() * (max - min + 1) + min );
+        }
+
+        function getArray(len) {
+            let arr = [];
+
+            for (let i = 0; i < len; i++) {
+                arr.push( getRandomInt(13, 25) );
+            }
+
+            return arr;
+        }
+
+        function average(data) {
+            let avg = 0;
+
+            for (value of data) {
+                avg += value;
+            }
+
+            avg /= data.length;
+            return avg;
+        }
+
+        let southData = getArray(7);
+        let westData = getArray(7);
+        let eastData = getArray(7);
+        let northData = getArray(7);
+
+        let allData = southData.concat(westData, eastData, northData);
+
+        console.log( average(allData) );
+    </script>
+</body>
+</html>

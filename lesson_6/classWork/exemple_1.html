@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const PiggyBank = {
+            coints: {
+                10: 0,
+                20: 0,
+                50: 0,
+                100: 0,
+            },
+            addCoints: function (value) {
+                if (value in this.coints) {
+                    this.coints[value]++;
+                } else {
+                    console.log("coint value is invalid");
+                }
+            },
+            showCoints: function() {
+                for (let key in this.coints) {
+                    console.log(key, this.coints[key]);
+                }
+            },
+            getTotal: function() {
+                let total = 0;
+                for (let key in this.coints) {
+                    total += key * this.coints[key];
+                }
+                return total;
+            }
+        };
+        PiggyBank.addCoints(10);
+        PiggyBank.addCoints(20);
+        PiggyBank.addCoints(30);
+        PiggyBank.addCoints(10);
+        PiggyBank.addCoints(50);
+        PiggyBank.addCoints(100);
+        PiggyBank.addCoints(100);
+        PiggyBank.showCoints();
+        console.log(PiggyBank.getTotal());
+        
+
+    </script>
+</body>
+</html>
