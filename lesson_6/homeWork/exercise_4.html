@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    let Host = {
+        guestList: [],
+        setGuestList: function(list) {
+            let listCount = list.length;
+            for(let i = 0; i < listCount; i++) {
+                if(Math.random() > 0.2) {
+                    this.guestList.push(list[i]);
+                }
+            }
+            let finalCount = this.guestList.length;
+
+        console.log("Представленный список гостей имеет: " + listCount + " имен.");
+        console.log("По решению хозяином вечеринки, только " + finalCount + " имен были оставлены.");
+        console.log("И так: " + this.guestList.join(", ") + " попали в список.");
+        }
+       };
+        const initialList = ['Sam', 'Jack', 'Harry', 'Mario', 'Link', 'Zelda', 'Bowser', 'Deen'];
+        Host.setGuestList(initialList);
+    </script>
+</body>
+</html>

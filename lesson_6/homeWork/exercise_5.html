@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let Elevator = {
+
+            currentFloor: 1,
+
+            toFloor: function(floor) {
+                if (floor >= 1 && floor <= 16) {
+                    while (this.currentFloor !== floor) {
+                        if (this.currentFloor < floor) {
+                            this.oneFloorUp();
+                            console.log("Лифт на " + this.currentFloor + " этаже");
+                        } else {
+                            this.oneFloorDown();
+                            console.log("Лифт на " + this.currentFloor + " этаже");
+                        }
+                    }
+                }
+            },
+
+            printFloor: function() {
+                console.log("Текущий этаж " + this.currentFloor)
+            },
+
+            oneFloorUp: function() {
+                if (this.currentFloor < 16) {
+                    this.currentFloor++;
+                }
+            },
+
+            oneFloorDown: function() {
+                if (this.currentFloor > 1) {
+                    this.currentFloor--;
+                }
+            },
+        };
+
+        Elevator.toFloor(15);
+        Elevator.toFloor(7);
+        Elevator.oneFloorUp();
+        Elevator.printFloor();
+
+
+    </script>
+</body>
+</html>
