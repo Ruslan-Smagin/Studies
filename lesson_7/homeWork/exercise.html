@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let words = ["black"];
+
+        let letterOfUser;
+        let randomWord = Math.floor(Math.random() * words.length);
+        let word = words[randomWord];
+        let array = [];
+
+        let replaceLetters = function() {     // функция заменяющая буквы на "_"
+            for (let i = 0; i < word.length; i++) {
+                array.push('_');   
+            };
+            let letter = prompt(array.join(" "));
+            letterOfUser = letter;
+        };
+        
+        
+        let indexDefinition = function() {   // Определяем индекс буквы введенной пользователем
+
+            let letterToCheck = letterOfUser;
+            let array = [];
+            
+            for (let i = 0; i < word.length; i++) {
+                 if (word[i] === letterOfUser) {
+                array.push(i);
+                }
+            }
+            return array;
+        };
+
+        let changeSymbolsToLeteers = function() {
+            array.splice(indexDefinition(), indexDefinition().length, letterOfUser);
+            
+        }
+        
+            
+        replaceLetters();
+        indexDefinition();
+        changeSymbolsToLeteers();
+        alert(array.join(" "));
+        
+
+    </script>
+</body>
+</html>
