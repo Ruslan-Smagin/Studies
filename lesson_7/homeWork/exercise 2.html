@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const wordsToGame = ["book", "air"];
+
+        const Game = {
+            try: 0,
+            word: "",
+            missingLetters: 0,
+            unGuessedWord: [],
+
+            getSymbolOfUser: function() { // Получает символ от пользователя и возвращает либо корректный символ либо null
+                let symbolOfUser;
+
+                while (true) {
+                    symbolOfUser = prompt('Введите символ:');
+
+                    if (symbolOfUser === null) {
+                        return null;
+                    } else if ( this.checkSymbol(symbolOfUser) ) {
+                        return symbolOfUser.toLowerCase();
+                    }
+                }
+            },
+
+            checkSymbol: function (symbol) { // Проверяет введенный символ
+                isCorrect = /^[/a-zA-Z/.]$/.test(symbol);
+                if (!isCorrect) {
+                    alert("Нужно ввести лишь один символ литинского алфавита!");
+                }
+                return isCorrect;
+            },
+
+            changeSymbolsToLeteers:  function(symbol) { // Функция заменяющая секретные буквы введенным символом
+                for (let i = 0; i < this.word.length; i++) {
+                    if (Game.word[i] === symbol) {
+                        Game.unGuessedWord[i] = symbol;
+                    }
+                }                
+            },
+
+            setRandomWord: function() {  //функция выберет рандомное слово и удалит это слово из массива
+                let index = Math.floor(Math.random() * this.words.length);
+                this.word = wordsToGame.splice(this.index, 1)[0];
+            },
+
+            replaceLetters: function() {     // функция заменяющая буквы на "_"
+                for (let i = 0; i < this.word.length; i++) {
+                    this.unGuessedWord.push('_');   
+                };
+            },
+
+            setup: function() {
+                this._setRandomWord();
+                this._replaceLetters(); 
+            },
+
+            restart: function() {
+                this.try = 0;
+                this.word = "";
+                this.missingLetters = 0;
+                this.unGuessedWord = [];
+                this.setup();
+            },
+
+            start: function() { 
+                this.setup();
+
+                while (true) {
+                    // Место для вашего кода =)
+                }
+            }
+        };
+
+        Game.start();
+
+    </script>
+</body>
+</html>

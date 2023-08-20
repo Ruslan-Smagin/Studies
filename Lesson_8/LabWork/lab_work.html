@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const Game = {
+
+        guessUser:  function() {
+
+             const randomNumber = Math.floor(Math.random() * 100 + 1);
+             let counter = 0;
+             while (true) {
+                counter++;
+
+                const numberOfUser = prompt("Угадай число  от 1 до 100 загаданное компьютером")
+                if (numberOfUser == randomNumber) {
+                    alert("Да это число " + randomNumber + " Ты выиграл!!! количество попыток " + counter)
+                    break;
+                    } else if (numberOfUser === null) {
+                    break;
+                    } else if (randomNumber > numberOfUser) {
+                    alert("Больше");
+                    continue;
+                    } else if (randomNumber < numberOfUser) {
+                    alert("Меньше");
+                    continue;
+                    } else if (numberOfUser === null) {
+                    break;
+                    }
+                }
+            
+        },
+
+        guessComputer: function guessNumber() {
+                    alert("Загадайте число от 1 до 100.");
+        
+                    let min = 1;
+                    let max = 100;
+                    let tryy = 0;
+                    let guessed = false;
+                    let number = "";
+
+                    while (!guessed) {
+                        let guess = Math.floor((min + max) / 2);
+                        number = guess;
+                        let response = prompt("Ваше число " + guess + "? Введите 'больше', 'меньше' или 'равно':");
+
+                        if (response === "больше") {
+                        min = guess + 1;
+                        } else if (response === "меньше") {
+                        max = guess - 1;
+                        } else if (response === "равно") {
+                        guessed = true;
+                        } else {
+                        alert("Некорректный ввод. Попробуйте снова.");
+                        }
+
+                        tryy++;
+                    }
+
+                    alert("Компьютер угадал ваше число " + number + " Количество попыток: " + tryy);
+                    }
+    }
+        Game.guessComputer()
+       Game.guessUser()
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+
+         const Hero = {
+
+            hp: 1000,                        // Жизненная энергия
+            defense: 100,                    // Защита
+            str: 120,                        // Сила
+            weapon: 250,                     // Оружие
+            shield: 150,                     // Щит
+            issShieldEquipped: false,        // Использование щита
+            potion: 2,                       // Зелье для востановления здоровья героя
+            potionEnergy: 500,               // Сила зелья
+
+            // Метод состоянии здоровья
+            showInfo: function() {
+                return 'Hero: ' + this.hp + ' HP'
+            },
+
+            // Метод изменения здоровья
+            modifyHealth: function(amount) {
+                this.hp += amount;
+                if (this.hp < 0) {
+                    this.hp = 0;
+                }
+            },
+
+            // Одеть щит герою
+            equipShield: function() {
+                if (!this.issShieldEquipped) {
+                this.issShieldEquipped = true;
+                this.defense += this.shield;
+                console.log('Герой одел щит');
+                } else {
+                    console.log('Герой уже испульзует щит');
+                }
+            },
+
+            // Снять щит с героя
+            removeShield: function() {
+                if (this.issShieldEquipped) {
+                    this.issShieldEquipped = false;
+                    this.defense -= this.shield;
+                    console.log('Герой снял щит')
+                }
+            },
+
+            // Выпить зелье
+            applyThePotion: function() {
+                if (this.potion > 0) {
+                    this.potion--;
+                    this.modifyHealth(this.potionEnergy);
+                    console.log('Hero drink potion');
+                    console.log(this.showInfo())
+                } else {
+                    console.log('Зелья не осталось')
+                }
+            }  
+        };
+
+         const Dragon = {
+
+            hp: 2000,         // Жизненная энергия
+            defense: 120,     // Защита
+            str: 150,         // Сила
+            weapon: 200,      // Оружие
+
+            // Метод состоянии здоровья
+            showInfo: function() {
+                return 'Dragon: ' + this.hp + ' HP'
+            },
+
+            // Метод изменения здоровья
+            modifyHealth: function(amount) {
+                this.hp += amount;
+                if (this.hp < 0) {
+                    this.hp = 0;
+                }
+            },
+            // Огненный шар дракона
+            fireBallAttack: function() {
+                console.log('Дракон плюнул огненным шаром');
+                if (!Hero.issShieldEquipped) {
+                fireDamage = (2 * this.str);
+                Hero.modifyHealth(-fireDamage);
+            } else {
+                console.log('Герой использовал защиту и не получил урона');
+            }
+
+            }
+        }
+            // Счетчик битвы
+        let raund = 1;
+
+            // Функция - шанс героя попасть по дракону
+        function getRundomNumber(min, max) {
+            return Math.random();
+        }
+
+            // Вероятность успеха
+        function isHit(successProbability) {
+            return getRundomNumber(0, 1) <= successProbability;
+        }
+
+            //  Расчет количество дамага который будет нанесен в результате успешного хода
+        function calculateDamage(attacker, defender) {
+            return attacker.str + attacker.weapon - defender.defense;
+        }
+
+            // Действия героя
+        function heroAttack() {
+            let damage = calculateDamage(Hero, Dragon);
+            Dragon.modifyHealth(-damage);
+            return console.log('Герой нанес по дракону урон в размере ' + damage + ' HP');
+        }
+
+            // Действия дракона
+        function drakonAttack() {
+            let damage = calculateDamage(Dragon, Hero);
+            Hero.modifyHealth(-damage);
+            return console.log('Дракон нанес по герою урон в размере ' + damage + ' HP');
+        }
+
+        
+
+            // Цикл игры
+        while (Dragon.hp > 0 && Hero.hp > 0) {
+            console.log('======================');
+            console.log('       Raund ' + raund);
+            raund++;
+            console.log('Energy of ' + Dragon.showInfo());
+            console.log('Energy of ' + Hero.showInfo());
+
+          
+
+                // Ход героя
+            console.log('Ход героя:')
+            
+                let heroAction = parseInt(prompt('Выберите действие героя: (1) - Атакавать, (2) - Ничего не делать, (3) - Одеть щит, (4) - Выпить зелье'));
+                if (heroAction === 1) {
+                    if (isHit(0.75)) {
+                    console.log('Герой атакует');
+                    heroAttack();
+                    console.log(Dragon.showInfo());
+                    } else {
+                        console.log('Герой промахнулся')
+                    }
+
+                } else if (heroAction === 2) {
+                    console.log('Герой ничего не предпринял');
+
+                } else if (heroAction === 3) {
+                    console.log('Герой использовал защиту');
+                    Hero.equipShield();
+
+                } else if (heroAction === 4) {
+                    Hero.applyThePotion();
+                }
+                 
+                // Проверим жив ли дракон
+            if (Dragon.hp <= 0) {
+                console.log('Дракон побежден!!!');
+                break;
+            }
+
+                // Ход дракона
+            console.log('Ход дракона:');
+            if (isHit(0.5)) {
+                if (isHit(0.5)) {
+                    Dragon.fireBallAttack();
+                    console.log(Hero.showInfo());
+                } else {
+                    drakonAttack(); 
+                    console.log(Hero.showInfo());
+                }
+            } else {
+                console.log('Дрaкон проспал:');
+            }
+            // Снять защиту с героя так как защиту можно использовать в один ход
+            Hero.removeShield();
+
+                  // Проверим жив ли наш герой
+                  if (Hero.hp <= 0) {
+                console.log('Наш герой пал смертью храбрых:')
+                break;
+            }
+    
+        }
+
+
+        console.log('*****************');
+        console.log('Game over')
+
+    
+   
+
+    </script>
+</body>
+</html>

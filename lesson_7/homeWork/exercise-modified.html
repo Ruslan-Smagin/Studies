@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра Виселица!</title>
+</head>
+
+<body>
+    <script>
+        const game = {
+            // Config
+            allWords: ['book', 'air'],
+
+            // Game variables
+            currentWords: [],
+            currentWord: '',
+            currentWordHidden: '',
+            currentWordIndex: 0,
+
+            // This method resets the game
+            resetTheGame: function () {
+                // Place all words into current words array (CLONE!)
+                this.currentWords = [...this.allWords];
+
+                // Select random word
+                this.selectRandomWord();
+
+                // Hide current word letters
+                this.hideCurrentWordLetters();
+            },
+
+            // Select random word
+            selectRandomWord: function () {
+                // Get random word index
+                this.currentWordIndex = Math.floor(Math.random() * this.currentWords.length)
+
+                // Select random word
+                this.currentWord = this.currentWords[this.currentWordIndex];
+            },
+
+            // Hide current word letters
+            hideCurrentWordLetters: function () {
+                // Clear currentWordHidden
+                this.currentWordHidden = '';
+
+                // Change all the word letters to _
+                for (let i = 0; i < this.currentWord.length; i++) {
+                    this.currentWordHidden += '_';
+                };
+            },
+
+            // Get current word hidden with spaces
+            getCurrentWordHiddenWithSpaces: function () {
+                return this.currentWordHidden.split('').map(char => char + ' ').join('');
+            },
+
+            // Let user guess the letter
+            letUserGuessTheLetter: function () {
+                // Get user input
+                const userInput = prompt(this.getCurrentWordHiddenWithSpaces());
+
+                // Now check if user input contains allowed chars
+                const regex = /^[/a-zA-Z/.]$/;
+                if (!regex.test(userInput) || userInput === null) {
+                    alert('You have entered incorrect character! Only one letter is allowed');
+                    return;
+                }
+
+                // Check if there is a letter in current word
+                for (let i = 0; i < this.currentWord.length; i++) {
+                    if (userInput === this.currentWord[i]) {
+                        // Split the currentWordHidden string into array
+                        const splittedString = this.currentWordHidden.split('');
+
+                        // Change _ to user input
+                        splittedString[i] = userInput;
+
+                        // Put the result back to currentWordHidden
+                        this.currentWordHidden = splittedString.join('');
+                    }
+                }
+            },
+
+            // Checks if word was guessed
+            checkIfWordWasGuessed: function () {
+                // In case currentWordHidden contains _
+                if (this.currentWordHidden.includes('_')) {
+                    return false;
+                }
+
+                // Otherwise
+                return true;
+            },
+
+            // Remove guessed word
+            removeGuessedWord: function () {
+                this.currentWords.splice(this.currentWordIndex, 1);
+            },
+
+            // The main game loop
+            gameLoop: function () {
+                // First of all reset the game
+                this.resetTheGame();
+
+                // Endless loop
+                while (true) {
+                    // In case there are no words to guess
+                    if (this.currentWords.length === 0) {
+                        // Ask user
+                        let answer = confirm('Начнем игру заново?');
+
+                        // In case of OK
+                        if (answer === true) {
+                            this.resetTheGame();
+                            continue;
+                        }
+
+                        // Game is over, since user do not want to play!
+                        alert('Thank you for the game. Game over!');
+                        break;
+                    }
+
+                    // Let user guess the letter
+                    this.letUserGuessTheLetter();
+
+                    // Now check if word was fully guessed
+                    if (this.checkIfWordWasGuessed()) {
+                        // Remove guessed word from the array
+                        this.removeGuessedWord();
+
+                        // Select next word only if there are some left!
+                        if (this.currentWords.length > 0) {
+                            // Select next random word
+                            this.selectRandomWord();
+
+                            // Hide the selected word
+                            this.hideCurrentWordLetters();
+                        }
+                    }
+                }
+            }
+        };
+
+        // Start the game
+        game.gameLoop();
+    </script>
+</body>
+
+</html>

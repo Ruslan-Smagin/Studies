@@ -7,46 +7,122 @@
 </head>
 <body>
     <script>
+        const wordsToGame = ["book", "air"];
+        const Game = {
+             words: "",
+             wordsToGame: ["book", "air"],
+             try: 0,
+             index: 0,
+             word: " ",
+             missingLetters: 0,
+             unGuessedWord: [],
+             symbolOfUser: "",
 
-        let words = ["black"];
+            addWordsToGameWords: function () {
+                 this.words = wordsToGame;
+                console.log(this.words);
+            },
 
-        let letterOfUser;
-        let randomWord = Math.floor(Math.random() * words.length);
-        let word = words[randomWord];
-        let array = [];
+            chekLetter: function() {    // Пверка на правильность введенного символа
+                if (/^[/a-zA-Z/.]$/.test(this.symbolOfUser)) {
+                    this.loverCaseSymbol();
+                    } else if (this.symbolOfUser === null) {
+                        
+                    } else {
+                        alert("Is incorect symbol");
+                    }      
+            },
 
-        let replaceLetters = function() {     // функция заменяющая буквы на "_"
-            for (let i = 0; i < word.length; i++) {
-                array.push('_');   
-            };
-            let letter = prompt(array.join(" "));
-            letterOfUser = letter;
-        };
+            loverCaseSymbol: function() {
+                        this.symbolOfUser = this.symbolOfUser.toLowerCase();
+            },
+
+             getSymbulOfUser: function() {
+                this.symbolOfUser = prompt(this.unGuessedWord.join(" "));
+            },
+
+             _randomWord: function() {  //функция выберет рандомное слово и удалит это слово из массиваи
+                this.index = Math.floor(Math.random() * this.words.length);
+                this.word = this.words[this.index];
+            },
+
+            _splaceWord: function() {
+                this.words.splice(this.index, 1);
+            },
+
+            _replaceLetters: function() {     // функция заменяющая буквы на "_"
+                for (let i = 0; i < this.word.length; i++) {
+                    this.unGuessedWord.push('_');   
+                };
+            },
+
+            changeSymbolsToLeteers:  function(symbol) {
+                for (let i = 0; i < this.word.length; i++) {
+                    if (Game.word[i] === symbol) {
+                        Game.unGuessedWord[i] = symbol;
+                    }
+                }                
+            },
+
+             setup: function() {
+                this.addWordsToGameWords();
+                this._randomWord();
+                
+                
+                
+                
+            },
+
+            gameCycle: function() { 
+                    while (true) {
+                        this.setup();
+                        
+                        if (this.words.length === 0) { 
+                                let answer = confirm("Начнем игру занова?");
+                                    if (answer === true) {
+                                        this.addWordsToGameWords();
+                                        this.setup();
+                                    } else {
+                                        alert("Thank you for the game. Game over!");
+                                        break;
+                                    }
+                                     if (Game.symbolOfUser === null) {
+                                        alert("Thank you for the game. Game over!");
+                                        break;
+                                     }     
+                        }
+                        this._replaceLetters();
+                        this._splaceWord();
+                        
+                        console.log(this.wordsToGame.length)
+                        console.log(Game.unGuessedWord.join(" "));
+                        console.log(Game.wordsToGame)
+                        console.log(this.index);
         
-        
-        let indexDefinition = function() {   // Определяем индекс буквы введенной пользователем
-
-            let letterToCheck = letterOfUser;
-            let array = [];
-            
-            for (let i = 0; i < word.length; i++) {
-                 if (word[i] === letterOfUser) {
-                array.push(i);
+                       while (this.symbolOfUser !== null) {
+                            
+                            
+                            this.getSymbulOfUser();
+                            this.chekLetter();
+                            this.changeSymbolsToLeteers(this.symbolOfUser);
+                            this.missingLetters++;
+                            console.log(this.unGuessedWord.join(" "));
+                            if (this.word === this.unGuessedWord.join("")){
+                                this.unGuessedWord = [];
+                                break;
+                            }    
+                         };
+                    }
                 }
-            }
-            return array;
         };
 
-        let changeSymbolsToLeteers = function() {
-            array.splice(indexDefinition(), indexDefinition().length, letterOfUser);
-            
-        }
-        
-            
-        replaceLetters();
-        indexDefinition();
-        changeSymbolsToLeteers();
-        alert(array.join(" "));
+        Game.gameCycle();
+        Game.addWordsToGameWords();
+       
+
+        console.log(Game.wordsToGame);
+        console.log(Game.unGuessedWord.join(" "));
+      
         
 
     </script>

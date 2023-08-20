@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const wordsToGame = ["book", "air"];
+
+        const Game = {
+            try: 0,
+            word: "",
+            missingLetters: 0,
+            unGuessedWord: [],
+            length: 0,
+
+            getSymbolOfUser: function() { // Получает символ от пользователя и возвращает либо корректный символ либо null
+                let symbolOfUser;
+                this.try++;
+                
+                while (true) {
+                    symbolOfUser = prompt('Введите символ:');
+
+                    if (symbolOfUser === null) {
+                        return null;
+                    } else if ( this.checkSymbol(symbolOfUser) ) {
+                        return symbolOfUser.toLowerCase();
+                    }
+                }
+            },
+
+            checkSymbol: function (symbol) { // Проверяет введенный символ
+                isCorrect = /^[/a-zA-Z/.]$/.test(symbol);
+                if (!isCorrect) {
+                    alert("Нужно ввести лишь один символ литинского алфавита!");
+                }
+                return isCorrect;
+            },
+
+            changeSymbolsToLeteers:  function(symbol) { // Функция заменяющая секретные буквы введенным символом
+                for (let i = 0; i < this.word.length; i++) {
+                    if (Game.word[i] === symbol) {
+                        Game.unGuessedWord[i] = symbol;
+                        this.missingLetters--;
+                    }
+                }                
+            },
+
+            setRandomWord: function() {  //функция выберет рандомное слово и удалит это слово из массива
+                if (wordsToGame.lengths == 0) {
+                    return;
+                }
+                this.length = wordsToGame.length;
+                let index = Math.floor(Math.random() * this.word.length);
+                this.word = wordsToGame.splice(this.index, 1)[0];
+            },
+
+            replaceLetters: function() {     // функция заменяющая буквы на "_"
+                for (let i = 0; i < this.word.length; i++) {
+                    if (this.word.length == 0)
+                    break;
+                    this.unGuessedWord.push('_');   
+                };
+            },
+
+            setup: function() {
+                this.setRandomWord();
+                this.replaceLetters(); 
+            },
+
+            restart: function() {
+                this.try = 0;
+                this.word = "";
+                this.missingLetters = 0;
+                this.unGuessedWord = [];
+                this.setup();
+            },
+
+            start: function() { 
+                this.setup();
+
+                while (true) {
+                    // Место для вашего кода =)
+                    console.log(this.length);
+                    let symbol = this.getSymbolOfUser();
+                    this.changeSymbolsToLeteers(symbol);
+                    console.log(this.length);
+                    if (this.unGuessedWord.join("") === this.word) {
+                        alert("ты угадал");
+                        this.unGuessedWord = [];
+                        this.setup();
+                        if (wordsToGame.leng == 0) {
+                            alert("Игра окончена");
+                            break;
+                        }
+                    }
+                    console.log(this.word)
+                    console.log(this.unGuessedWord.join(""));
+                    console.log(wordsToGame);
+                    if (symbol == null) {
+                        break;
+                    }
+
+                }
+            }
+        };
+
+        Game.start();
+
+    </script>
+</body>
+</html>

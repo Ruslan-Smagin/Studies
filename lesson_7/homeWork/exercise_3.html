@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tried = 3;
+        let counter = 0;
+        const generateNumber = function() {
+            let number = Math.floor(Math.random() * 7 + 1);
+            return number;
+        };
+        
+        const number = generateNumber();
+        while (true) {
+            
+            counter++;
+            tried--;
+            let guess = (prompt("Guess the number from 1 to 7"));
+            if (guess === null) {
+                alert("Thank you for game");
+                break;
+            } else if (isNaN(parseInt(guess)) || (/^[/1-7/.]$/.test(guess) !== true)) {
+                alert("Enter number from 1 to 7")
+                continue;
+            } else if (number === guess) {
+                alert("You are win" + "\nКоличество попыток: " + counter);
+                break;
+            } else if (tried === 0) {
+                alert("You are loss" + "\nУ тебя закончились попытки");
+                break;
+            } else
+                alert("Try again");
+        };
+
+    </script>
+</body>
+</html>
