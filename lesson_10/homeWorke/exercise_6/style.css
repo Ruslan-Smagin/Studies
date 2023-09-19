@@ -1,0 +1,16 @@
+
+
+.border {
+   
+    position: relative;
+    width: 1420px;
+    height: 680px;
+    border: 2px solid rgb(170, 21, 21);
+
+}
+.circle {
+   
+    position: absolute;
+    border-radius: 50%;
+   
+}

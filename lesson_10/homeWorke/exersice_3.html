@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exersice_3</title>
+</head>
+
+<body>
+    <div id="cart-items">
+        <div class="item">Milk 1 l.<span class="qty">x 2</span></div>
+        <div class="item">Cola 1.5 l. <span class="qty">x 1</span></div>
+        <div class="item">Bread<span class="qty">x 2</span></div>
+        <div class="item">Cheese<span class="qty">x 1</span></div>
+        <div class="item">Chocolate bar<span class="qty">x 3</span></div>
+    </div>
+</body>
+<script>
+    const cartItems = document.getElementById('cart-items');
+    const items = cartItems.getElementsByClassName('item');
+
+    for (const item of items) {
+        if (item.textContent.includes('Cola 1.5 l.')) {
+            item.remove()
+        } else if (item.textContent.includes('Chocolate bar')) {
+                const newItem = document.createElement('div');
+                newItem.className = 'item';
+                newItem.innerHTML = 'Canned Fish<span class="qty">x 4</span>'; 
+                
+                cartItems.replaceChild(newItem, item);
+        }
+    }
+
+
+
+    console.log(cartItems.textContent)
+</script>
+
+</html>

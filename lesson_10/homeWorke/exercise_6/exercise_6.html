@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+
+        //Функция создает случайное число в заданном диапозоне
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+
+        //Функция задает рандомный цвет кружка.
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        //Функция нарисует нужное количество рандомный кружков
+        function drawCircles(count) {
+            const border = $('.border');
+            const borderWigth = border.width();
+            const borderHeigth = border.height();
+
+            for (let i = 0; i < count; i++) {
+
+                const color = getRandomColor();
+                const diameter = getRandom(50, 250)
+                const circle = $('<div class="circle"></div>');
+
+                circle.css({
+                    width: diameter + 'px',
+                    height: diameter + 'px',
+                    background: color,
+                    top: getRandom(0, borderHeigth - diameter),
+                    left: getRandom(0, borderWigth - diameter)
+                })
+                
+                border.append(circle);
+            }
+        }
+            $(document).ready(function () {
+                drawCircles(20)
+            })
+    </script>
+
+    <div class="border"></div>
+
+
+</body>
+
+</html>

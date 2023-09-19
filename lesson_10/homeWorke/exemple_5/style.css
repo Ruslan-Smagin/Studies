@@ -1,0 +1,22 @@
+.cheesboard {
+    width: 320px;
+    height: 320px;
+    border: 1px black;
+}
+.white {
+   background-color: rgb(202, 206, 176);
+}
+.black {
+    background-color: rgb(53, 54, 43);
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+
+.row {
+    clear: both;
+    overflow: hidden;
+}

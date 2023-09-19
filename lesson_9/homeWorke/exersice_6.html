@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const taskList = document.createElement('ul');
+        taskList.id = 'task-list';
+
+        
+        document.body.appendChild(taskList);
+
+        while (true) {
+            const task = prompt('Введите задачу:');
+            if (task === null || task === '') {
+                break; 
+            }
+
+            const taskItem = document.createElement('li'); 
+            taskItem.textContent = task; 
+            taskList.appendChild(taskItem);
+        }
+    </script>
+</body>
+
+</html>
